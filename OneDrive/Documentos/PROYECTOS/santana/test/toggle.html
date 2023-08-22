@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle</title>
+  <link rel="stylesheet" href="../views/assets/fontawesome/css/all.css">
+</head>
+
+<body>
+  <i class="fa-solid fa-maximize" id="icono"></i>
+
+  <script>
+    let myDocument = document.documentElement;
+    let icono = document.getElementById('icono');
+
+    function alternarIcono() {
+      if (icono.classList[1] == 'fa-maximize') {
+        icono.classList.remove('fa-maximize');
+        icono.classList.add('fa-minimize');
+
+      } else if (icono.classList[1] == 'fa-minimize') {
+        icono.classList.remove('fa-minimize');
+        icono.classList.add('fa-maximize');
+
+      }
+    }
+
+    function alternarPantalla() {
+      if (icono.classList[1] == 'fa-maximize') {
+        if (myDocument.requestFullscreen) {
+          myDocument.requestFullscreen();
+
+        } else if (myDocument.msRequestFullscreen) {
+          myDocument.msRequestFullscreen();
+
+        } else if (myDocument.mozRequestFullscreen) {
+          myDocument.mozRequestFullscreen();
+
+        } else if (myDocument.webkitRequestFullscreen) {
+          myDocument.webkitRequestFullscreen();
+        }
+
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+
+        } else if (document.msexitFullscreen) {
+          document.msexitFullscreen();
+
+        } else if (document.mozexitFullscreen) {
+          document.mozexitFullscreen();
+
+        } else if (document.webkitexitFullscreen) {
+          document.webkitexitFullscreen();
+        }
+      }
+    }
+
+    icono.addEventListener('click', () => {
+      alternarPantalla();
+      alternarIcono();
+    });
+
+  </script>
+</body>
+
+</html>

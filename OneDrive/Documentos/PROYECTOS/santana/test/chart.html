@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráficos</title>
+</head>
+
+<body>
+
+  <div class="container" style="height: 500px;">
+    <canvas id="migrafico"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const ctx = document.getElementById('migrafico');
+
+      new Chart(ctx, {
+        type: 'polarArea',
+        data: {
+          labels: ['Temprano', 'Tarde', 'No Asistió'],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3],
+            borderWidth: 1
+          }]
+        },
+      });
+    });
+
+  </script>
+</body>
+
+</html>

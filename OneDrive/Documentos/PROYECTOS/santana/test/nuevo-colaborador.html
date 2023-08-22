@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- SB-Admin-2 -->
+  <link rel="stylesheet" href="../views/vendor/sb-admin-2/css/sb-admin-2.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="pt-5">
+      <h1>Ficha de Registro</h1>
+      <em>Por favor complete sus datos correctamente</em>
+    </div>
+
+    <div class="pt-5">
+      <form>
+        <div class="form-group row">
+          <label for="regitrar-nuevo" class="col-sm-2 col-form-label">Registrar:</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="regitrar-nuevo" autofocus>
+              <option selected>Seleccione</option>
+              <option value="E">Estudiante</option>
+              <option value="P">Personal de la I.E.E.</option>
+            </select>
+          </div>
+        </div>
+      </form>
+
+      <form class="" id="formulario-personas">
+
+      </form>
+    </div>
+
+
+
+    <!-- <form class="">
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="nombres">Nombres:</label>
+          <input type="text" class="form-control" id="nombres" autofocus>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="apepaterno">Apellido Paterno:</label>
+          <input type="text" class="form-control" id="apepaterno">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="apematerno">Apellido Materno:</label>
+          <input type="text" class="form-control" id="apematerno">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="fechanac">Fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="fechanac">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="tipodocumento">Tipo de documento:</label>
+          <select class="form-control" id="tipodocumento">
+            <option value="D" selected>DNI</option>
+            <option value="C">Carnet de Extranjería</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="nrodocumento">Número de documento:</label>
+          <input type="number" class="form-control" id="nrodocumento" aria-describedby="emailHelp">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="distrito">Distrito:</label>
+          <select class="form-control" id="distrito">
+            <option value="1" selected>Chincha Alta</option>
+            <option value="2">Chavin</option>
+            <option value="3">Chincha Baja</option>
+            <option value="4">El Carmen</option>
+            <option value="5">Grocio Prado</option>
+            <option value="6">San Pedro de Huacarpana</option>
+            <option value="7">Sunampe</option>
+            <option value="8">Tambo de Mora</option>
+            <option value="9">Alto Laran</option>
+            <option value="10">Pueblo Nuevo</option>
+            <option value="11">San Juan de Yanac</option>
+            <option value="12">Parcona</option>
+            <option value="13">Aurahua</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="genero">Género:</label>
+          <select class="form-control" id="genero">
+            <option disabled hidden selected>Seleccione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="nombres">Nombre de usuario:</label>
+          <input type="text" class="form-control" id="nombres" autofocus>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Contraseña:</label>
+          <input type="password" class="form-control" id="email">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="cargo">Cargo:</label>
+          <select class="form-control" id="cargo">
+            <option disabled hidden selected>Seleccione</option>
+            <option value="2">Subdirector</option>
+            <option value="3">Docente</option>
+            <option value="4">Auxiliar</option>
+            <option value="5">Apoderado</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" class="form-control" id="email">
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary">Finalizar</button>
+    </form> -->
+  </div>
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../views/vendor/jquery/jquery.min.js"></script>
+  <script src="../views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="../views/vendor/sweetalert2/sweetalert2.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../views/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom scripts for all pages -->
+  <script src="../views/vendor/sb-admin-2/js/sb-admin-2.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const registrarNuevo = document.getElementById("regitrar-nuevo");
+      const formPersonas = document.getElementById("formulario-personas");
+
+      registrarNuevo.addEventListener("change", () => {
+        //value (input/select)
+        let valor = registrarNuevo.value;
+        console.log(valor);
+        formPersonas.innerHTML = ``;
+
+        if (valor == 'E') {
+          formPersonas.innerHTML = `
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="nombres">Nombres:</label>
+                <input type="text" class="form-control" id="nombres" autofocus>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="apepaterno">Apellido Paterno:</label>
+                <input type="text" class="form-control" id="apepaterno">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="apematerno">Apellido Materno:</label>
+                <input type="text" class="form-control" id="apematerno">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="fechanac">Fecha de nacimiento:</label>
+                <input type="date" class="form-control" id="fechanac">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="tipodocumento">Tipo de documento:</label>
+                <select class="form-control" id="tipodocumento">
+                  <option value="D" selected>DNI</option>
+                  <option value="C">Carnet de Extranjería</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="nrodocumento">Número de documento:</label>
+                <input type="number" class="form-control" id="nrodocumento" aria-describedby="emailHelp">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="distrito">Distrito:</label>
+                <select class="form-control" id="distrito">
+                  <option value="1" selected>Chincha Alta</option>
+                  <option value="2">Chavin</option>
+                  <option value="3">Chincha Baja</option>
+                  <option value="4">El Carmen</option>
+                  <option value="5">Grocio Prado</option>
+                  <option value="6">San Pedro de Huacarpana</option>
+                  <option value="7">Sunampe</option>
+                  <option value="8">Tambo de Mora</option>
+                  <option value="9">Alto Laran</option>
+                  <option value="10">Pueblo Nuevo</option>
+                  <option value="11">San Juan de Yanac</option>
+                  <option value="12">Parcona</option>
+                  <option value="13">Aurahua</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="genero">Género:</label>
+                <select class="form-control" id="genero">
+                  <option disabled hidden selected>Seleccione</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary">Finalizar</button>
+          `;
+
+          document.getElementById("nombres").focus();
+        }else if(valor == 'P'){
+          formPersonas.innerHTML = `
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="nombres">Nombres:</label>
+                <input type="text" class="form-control" id="nombres" autofocus>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="apepaterno">Apellido Paterno:</label>
+                <input type="text" class="form-control" id="apepaterno">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="apematerno">Apellido Materno:</label>
+                <input type="text" class="form-control" id="apematerno">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="fechanac">Fecha de nacimiento:</label>
+                <input type="date" class="form-control" id="fechanac">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="tipodocumento">Tipo de documento:</label>
+                <select class="form-control" id="tipodocumento">
+                  <option value="D" selected>DNI</option>
+                  <option value="C">Carnet de Extranjería</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="nrodocumento">Número de documento:</label>
+                <input type="number" class="form-control" id="nrodocumento" aria-describedby="emailHelp">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="distrito">Distrito:</label>
+                <select class="form-control" id="distrito">
+                  <option value="1" selected>Chincha Alta</option>
+                  <option value="2">Chavin</option>
+                  <option value="3">Chincha Baja</option>
+                  <option value="4">El Carmen</option>
+                  <option value="5">Grocio Prado</option>
+                  <option value="6">San Pedro de Huacarpana</option>
+                  <option value="7">Sunampe</option>
+                  <option value="8">Tambo de Mora</option>
+                  <option value="9">Alto Laran</option>
+                  <option value="10">Pueblo Nuevo</option>
+                  <option value="11">San Juan de Yanac</option>
+                  <option value="12">Parcona</option>
+                  <option value="13">Aurahua</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="genero">Género:</label>
+                <select class="form-control" id="genero">
+                  <option disabled hidden selected>Seleccione</option>
+                  <option value="M">Masculino</option>
+                  <option value="F">Femenino</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="nombres">Nombre de usuario:</label>
+                <input type="text" class="form-control" id="nombres" autofocus>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email">Contraseña:</label>
+                <input type="password" class="form-control" id="email">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="cargo">Cargo:</label>
+                <select class="form-control" id="cargo">
+                  <option disabled hidden selected>Seleccione</option>
+                  <option value="2">Subdirector</option>
+                  <option value="3">Docente</option>
+                  <option value="4">Auxiliar</option>
+                  <option value="5">Apoderado</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary">Finalizar</button>
+          `;
+
+          document.getElementById("nombres").focus();
+
+        }else{
+          formPersonas.innerHTML = ``;
+        }
+        // Entre las etiquetas HTML
+        // texto.innerHTML = codigo;
+      });
+
+
+
+
+    });
+  </script>
+</body>
+
+</html>

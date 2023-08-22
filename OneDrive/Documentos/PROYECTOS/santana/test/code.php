@@ -1,0 +1,1 @@
+<img src="barcode.php?text=70510256&size=50&orientation=vertical&codetype=Code128">

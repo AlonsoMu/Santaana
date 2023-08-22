@@ -1,0 +1,54 @@
+USE dbsa;
+
+-- H) LLAMAR A PROCEDIMIENTOS ALMACENADOS
+-- 1. INICIAR SESIÓN
+CALL spu_colaborador_login('Miguel');
+CALL spu_colaborador_login('1344133@senati.pe');
+
+-- 2. OBTENER TURNO DE LA BD Y COMPARARLO AL MOMENTO DE MARCARLO EN EL INICIO DE SESIÓN
+CALL spu_turno_obtener('M');
+
+-- 3. BUSCAR COLABORADOR QUE OLVIDÓ SU CONTRASEÑA
+CALL spu_colaborador_buscar('Jose');
+
+-- 4. REGISTRAR CLAVE DE RECUPERACIÓN
+CALL spu_desbloqueo_registrar(1, '1344133@senati.pe', '9999');
+
+-- 5. VALIDAR TIEMPO (15 MINUTOS)
+CALL spu_colaborador_validartiempo(1);
+
+-- 6. VALIDAR CLAVE INGRESADA POR EL COLABORADOR
+CALL spu_colaborador_validarclave(1, '9999');
+
+-- 7. PROCEDIMIENTO QUE FINALMENTE ACTUALIZARA LA CLAVE DESPUES DE TODAS LAS VALIDACIONES
+CALL spu_colaborador_actualizarclave(1, 'CLAVE_ENCRIPTADA');
+
+-- 8. OBTENER DATOS DEL ALUMNA AL INGRESAR DNI/ESCANEAR EL CÓDIGO DE BARRAS
+CALL spu_alumna_obtener('62674202');
+
+-- 9. REGISTRAR ASISTENCIA LUEGO DE ENCONTRAR AL ALUMNA POR SU DNI
+CALL spu_asistencia_registrar(1994);
+
+-- 10. LISTAR ASISTENCIAS DE ALUMNAS POR HORA DE INGRESO
+CALL spu_asistencia_listar();
+
+-- 11. LISTAR GRADO AL SELECCIONAR UN TURNO
+CALL spu_grado_listar('M');
+
+-- 12. LISTAR SECCIÓN AL SELECCIONAR UN TURNO
+CALL spu_seccion_listar('M', '1');
+
+-- 13. LISTAR LOS ALUMNAS AL SELECCIONAR GRADO Y SECCIÓN
+CALL spu_alumnas_listar('1', 'A');
+
+-- 14. ACTUALIZAR FOTOGRAFIA DE ALUMNA
+CALL spu_fotografia_actualizar(1, 'foto.jpg');
+
+-- 15. OBTENER REPORTES POR ALUMNAS EN UN RAGO DE FECHAS
+CALL spu_alumna_reporte('62674202', '2023-03-20', '2023-07-15');
+
+-- 16. OBTENER REPORTES POR GRADO Y SECCIÓN (AULA)
+CALL spu_aula_reporte('1', 'A');
+
+-- 17. BUSCAR ALUMNA EN LA LISTA PARA SABER SI ES QUE ASISTIÓ ESE DÍA
+CALL spu_alumna_buscar('Tesy');
